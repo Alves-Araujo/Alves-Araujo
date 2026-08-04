@@ -1,6 +1,6 @@
 ## Welcome to my world! 🌍
 
-<img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExN2JrdWdvaDc2czB0Njhpa2M1ZWZsN29qZjVsdmtzZXc1dHkxcm9wOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ZVik7pBtu9dNS/giphy.gif" width="500" />
+<img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExN2JrdWdvaDc2czB0Njhpa2M1ZWZsN29qZjVsdmtzZXc1dHkxcm9wOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ZVik7pBtu9dNS/giphy.gif" width="350" />
 
 ---
 
@@ -37,7 +37,7 @@
 ### 👾 My GitHub Activity
 
 <div data-importer="stats" align="center">
-  <img src="https://raw.githubusercontent.com/Alves-Araujo/Alves-Araujo/output/activity-graph.svg?radius=16&theme=github-dark&area=true&order=5" height="300" alt="activity-graph graph"  />
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=Alves-Araujo&radius=16&theme=github-dark&area=true&order=5" height="220" alt="activity-graph graph" />
 </div>
 
 <br>
@@ -55,6 +55,5 @@
 ### 🤝 Connect with me
 
 <p align="left">
-  <a href="https://www.linkedin.com/in/andr%C3%A9-alves-ara%C3%BAjo-589423311/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/></a>
-  <a href="#"><img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white"/></a>
+  <a href="https://www.linkedin.com/in/andr%C3%A9-alves-ara%C3%BAjo-589423311"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/></a>
 </p>

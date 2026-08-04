@@ -21,7 +21,7 @@
 ### 🧰 Development Tools and Environments
 
 <p align="left">
-  <img src="https://skillicons.dev/icons?i=pycharm,idea,clion,vscode" alt="Tools"/>
+  <img src="https://skillicons.dev/icons?i=pycharm,idea,clion,vscode,arduino" alt="Tools"/>
 </p>
 
 ---
@@ -31,6 +31,24 @@
 <p align="left">
   <img src="https://skillicons.dev/icons?i=linux,apple,windows" alt="Operating Systems"/>
 </p>
+
+---
+
+### 👾 My GitHub Activity
+
+<div data-importer="stats" align="center">
+  <img src="https://raw.githubusercontent.com/Alves-Araujo/Alves-Araujo/activity-graph-output/activity-graph.svg?radius=16&theme=github-dark&area=true&order=5" height="300" alt="activity-graph graph"  />
+</div>
+
+<br>
+
+<div align="center">
+  <picture data-importer="pacman">
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Alves-Araujo/Alves-Araujo/pacman-output/pacman-contribution-graph-dark.svg?game=pacman">
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Alves-Araujo/Alves-Araujo/pacman-output/pacman-contribution-graph.svg?game=pacman">
+    <img alt="pacman contribution graph" src="https://raw.githubusercontent.com/Alves-Araujo/Alves-Araujo/pacman-output/pacman-contribution-graph.svg?game=pacman">
+  </picture>
+</div>
 
 ---
 

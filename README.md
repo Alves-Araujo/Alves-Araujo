@@ -13,7 +13,7 @@
 ### 🛠️ Technologies and Tools
 
 <p align="left">
-  <img src="https://skillicons.dev/icons?i=python,java,cpp,html,css,flutter,dart,git,github" alt="Technologies"/>
+  <img src="https://skillicons.dev/icons?i=python,java,cpp,html,css,flutter,dart,mysql,git,github" alt="Technologies"/>
 </p>
 
 ---
@@ -39,9 +39,7 @@
 <div data-importer="stats" align="center">
   <img src="https://github-readme-activity-graph.vercel.app/graph?username=Alves-Araujo&radius=16&theme=github-dark&area=true&order=5" height="220" alt="activity-graph graph" />
 </div>
-
 <br>
-
 <div align="center">
   <picture data-importer="pacman">
     <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Alves-Araujo/Alves-Araujo/output/pacman-contribution-graph-dark.svg">

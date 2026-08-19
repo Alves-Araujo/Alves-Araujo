@@ -13,7 +13,7 @@
 ### 🛠️ Technologies and Tools
 
 <p align="left">
-  <img src="https://skillicons.dev/icons?i=python,java,cpp,html,css,flutter,dart,mysql,git,github" alt="Technologies"/>
+  <img src="https://skillicons.dev/icons?i=python,java,cpp,html,css,js,react,nextjs,flutter,dart,mysql,git,github" alt="Technologies"/>
 </p>
 
 ---
@@ -21,7 +21,7 @@
 ### 🧰 Development Tools and Environments
 
 <p align="left">
-  <img src="https://skillicons.dev/icons?i=pycharm,idea,clion,vscode,arduino" alt="Tools"/>
+  <img src="https://skillicons.dev/icons?i=pycharm,idea,clion,vscode,androidstudio,arduino" alt="Tools"/>
 </p>
 
 ---

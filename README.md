@@ -1,6 +1,6 @@
 ## Welcome to my world! 🌍
 
-<img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExN2JrdWdvaDc2czB0Njhpa2M1ZWZsN29qZjVsdmtzZXc1dHkxcm9wOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ZVik7pBtu9dNS/giphy.gif" width="350" />
+[<img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExN2JrdWdvaDc2czB0Njhpa2M1ZWZsN29qZjVsdmtzZXc1dHkxcm9wOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ZVik7pBtu9dNS/giphy.gif" width="350" />](https://github.com/user-attachments/assets/0d93d794-45f0-4571-8a2b-adbfaaaa40a5)
 
 ---
 

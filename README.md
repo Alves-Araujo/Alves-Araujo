@@ -1,7 +1,7 @@
 ## Welcome to my world! 🌍
 
 <p align="center">
-  <img src="./assets/top-banner.svg?v=8" width="100%" alt="Alves Araújo full stack developer" />
+  <img src="./assets/top-banner.svg?v=10" width="100%" alt="Alves Araújo full stack developer" />
 </p>
 
 ---

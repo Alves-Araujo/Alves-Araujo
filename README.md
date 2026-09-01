@@ -1,7 +1,7 @@
 ## Welcome to my world! 🌍
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/a0699657-e692-4ceb-af31-f2a8c845d02f" alt="Banner Alves Araújo Developer" width="100%">
+  <img src="./assets/top-banner.svg" width="100%" alt="Alves Araújo full stack developer" />
 </p>
 
 ---

@@ -41,7 +41,7 @@ def fetch(user):
         cells.append(dict(row=int(gid.group(1)), col=int(gid.group(2)),
                           date=date(*map(int, dt.groups())), level=int(lv.group(1))))
     if not cells:
-        sys.exit("nenhuma celula encontrada ‚Äî o HTML do GitHub mudou?")
+        sys.exit("nenhuma celula encontrada - o HTML do GitHub mudou?")
 
     counts = {}
     for tip in re.findall(r"<tool-tip[^>]*for=\"contribution-day-component-(\d+)-(\d+)\"[^>]*>(.*?)</tool-tip>",
@@ -148,4 +148,4 @@ if __name__ == "__main__":
     os.makedirs(os.path.dirname(OUT) or ".", exist_ok=True)
     with open(OUT, "w", encoding="utf-8") as fh:
         fh.write(svg)
-    print(f"{OUT} ¬∑ {len(svg)} bytes")
+    print(f"{OUT} | {len(svg)} bytes")

@@ -1,9 +1,9 @@
 <p align="center">
-  <img src="./assets/top-banner.svg?v=10" width="100%" alt="Alves Araújo — Developer" />
+  <img src="./assets/top-banner.svg?v=10" width="100%" alt="Alves Ara&#250;jo &#8212; Developer" />
 </p>
 
 <p align="center">
-  <b>Computer Engineering</b> at <b>Inatel</b> · 6th period
+  <b>Computer Engineering</b> at <b>Inatel</b> &#183; 6th period
 </p>
 
 <p align="center">
@@ -12,7 +12,7 @@
 
 <img src="./assets/divider.svg" width="100%" alt="" />
 
-<h2 align="center">🛠️ Stack</h2>
+<h2 align="center">&#128736;&#65039; Stack</h2>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Python-0D1117?style=for-the-badge&logo=python&logoColor=3776AB" alt="Python" />
@@ -43,14 +43,12 @@
 
 <img src="./assets/divider.svg" width="100%" alt="" />
 
-<h2 align="center">📊 Activity</h2>
+<h2 align="center">&#128202; Activity</h2>
 
 <p align="center">
   <img src="./assets/contribution-graph.svg" width="100%" alt="Contribution graph" />
 </p>
 
-<img src="./assets/divider.svg" width="100%" alt="" />
-
 <p align="center">
-  <sub><i>Studying, shipping, repeating.</i></sub>
+  <img src="./assets/bottom-banner.svg" width="100%" alt="See you around" />
 </p>

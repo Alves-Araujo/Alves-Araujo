@@ -17,8 +17,8 @@ TOKEN = os.environ.get("GITHUB_TOKEN", "")
 IGNORED = {"HTML", "CMake", "Swift", "Objective-C", "Kotlin", "C", "Ruby", "Batchfile", "Shell"}
 MAX_LANGS = 5
 
-W, H     = 873.0, 140.0
-PAD      = 18.0
+W, H     = 873.0, 118.0
+PAD      = 16.0
 INK      = "#0a0e13"
 MUTED    = "#8b949e"
 BRIGHT   = "#e6edf3"
@@ -58,13 +58,19 @@ def contributions(user):
 
 
 def gather(user):
-    repos = api(f"/users/{user}/repos?per_page=100&type=owner") or []
+    repos = api(f"/users/{user}/repos?per_page=100&type=owner")
+    if not isinstance(repos, list):
+        # resposta de erro da API (limite excedido, por exemplo) vem como dicionario
+        sys.exit(f"API nao devolveu a lista de repositorios: {repos}")
     repos = [r for r in repos if not r.get("fork")]
     langs = Counter()
     for r in repos:
-        data = api(f"/repos/{user}/{r['name']}/languages") or {}
+        data = api(f"/repos/{user}/{r['name']}/languages")
+        if not isinstance(data, dict):
+            continue
         for name, size in data.items():
-            if name not in IGNORED:
+            # ignora payload de erro, onde o valor e uma string
+            if name not in IGNORED and isinstance(size, int):
                 langs[name] += size
     return len(repos), langs, contributions(user)
 
@@ -84,16 +90,16 @@ def build(n_repos, langs, contribs):
     blocks, bx = [], PAD
     for value, label in stats:
         blocks.append(
-            f'<text x="{round(bx,1)}" y="{PAD + 26}" fill="{BRIGHT}" font-size="26" '
+            f'<text x="{round(bx,1)}" y="{PAD + 24}" fill="{BRIGHT}" font-size="24" '
             f'font-weight="600" font-family="{FONT}">{value}</text>'
-            f'<text x="{round(bx,1)}" y="{PAD + 43}" fill="{MUTED}" font-size="11.5" '
+            f'<text x="{round(bx,1)}" y="{PAD + 40}" fill="{MUTED}" font-size="11" '
             f'font-family="{FONT}">{label}</text>')
         bx += 178
-    blocks.append(f'<text x="{W - PAD}" y="{PAD + 12}" fill="{MUTED}" font-size="11.5" '
+    blocks.append(f'<text x="{W - PAD}" y="{PAD + 10}" fill="{MUTED}" font-size="11" '
                   f'text-anchor="end" font-family="{FONT}">last 12 months</text>')
 
     # ---- barra empilhada ----
-    bar_y, bar_h, bar_w = 86.0, 12.0, W - PAD * 2
+    bar_y, bar_h, bar_w = 76.0, 10.0, W - PAD * 2
     segs, x = [], PAD
     for i, (_, pct) in enumerate(rows):
         seg = bar_w * pct / 100.0
@@ -109,10 +115,10 @@ def build(n_repos, langs, contribs):
     for i, (name, pct) in enumerate(rows):
         col = LANG_COLORS[i % len(LANG_COLORS)]
         legend.append(
-            f'<circle cx="{round(lx+5,1)}" cy="{bar_y + 28}" r="5" fill="{col}"/>'
-            f'<text x="{round(lx+18,1)}" y="{bar_y + 32}" fill="{BRIGHT}" font-size="12.5" '
+            f'<circle cx="{round(lx+5,1)}" cy="{bar_y + 24}" r="4.5" fill="{col}"/>'
+            f'<text x="{round(lx+18,1)}" y="{bar_y + 28}" fill="{BRIGHT}" font-size="12" '
             f'font-family="{FONT}">{name}</text>'
-            f'<text x="{round(lx+18+len(name)*7.6+8,1)}" y="{bar_y + 32}" fill="{MUTED}" '
+            f'<text x="{round(lx+18+len(name)*7.6+8,1)}" y="{bar_y + 28}" fill="{MUTED}" '
             f'font-size="12" font-family="{FONT}">{pct:.1f}%</text>')
         lx += len(name) * 7.6 + 78
     return f'''<?xml version="1.0" encoding="UTF-8"?>
@@ -130,7 +136,7 @@ def build(n_repos, langs, contribs):
   <rect x="0.6" y="0.6" width="{W-1.2}" height="{H-1.2}" rx="9.4" fill="none"
         stroke="url(#flow)" stroke-width="1.2" opacity=".5"/>
   {"".join(blocks)}
-  <rect x="{PAD}" y="72" width="{W - PAD*2}" height="1" fill="#1b2430"/>
+  <rect x="{PAD}" y="66" width="{W - PAD*2}" height="1" fill="#1b2430"/>
   {bar}
   {"".join(legend)}
 </svg>

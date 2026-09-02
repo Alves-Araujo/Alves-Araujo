@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 873.0 46.0" width="873.0" height="46.0"
+     role="img" aria-label="Activity">
+  <title>Activity</title>
+  <defs>
+    <linearGradient id="flow" gradientUnits="userSpaceOnUse" x1="-873.0" y1="0" x2="873.0" y2="0">
+      <stop offset="0.0" stop-color="#22e6e0"/><stop offset="0.0625" stop-color="#46b8f5"/><stop offset="0.125" stop-color="#6f7bfa"/><stop offset="0.1875" stop-color="#a855f0"/><stop offset="0.25" stop-color="#ff3ee0"/><stop offset="0.3125" stop-color="#a855f0"/><stop offset="0.375" stop-color="#6f7bfa"/><stop offset="0.4375" stop-color="#46b8f5"/><stop offset="0.5" stop-color="#22e6e0"/><stop offset="0.5625" stop-color="#46b8f5"/><stop offset="0.625" stop-color="#6f7bfa"/><stop offset="0.6875" stop-color="#a855f0"/><stop offset="0.75" stop-color="#ff3ee0"/><stop offset="0.8125" stop-color="#a855f0"/><stop offset="0.875" stop-color="#6f7bfa"/><stop offset="0.9375" stop-color="#46b8f5"/><stop offset="1" stop-color="#22e6e0"/>
+      <animateTransform attributeName="gradientTransform" type="translate" from="0 0" to="873.0 0"
+                        dur="7.5s" repeatCount="indefinite"/>
+    </linearGradient>
+    <linearGradient id="fadeL" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#000"/><stop offset="55%" stop-color="#fff"/><stop offset="100%" stop-color="#fff"/>
+    </linearGradient>
+    <linearGradient id="fadeR" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#fff"/><stop offset="45%" stop-color="#fff"/><stop offset="100%" stop-color="#000"/>
+    </linearGradient>
+    <mask id="mL"><rect x="0" y="0" width="335.4" height="46.0" fill="url(#fadeL)"/></mask>
+    <mask id="mR"><rect x="528.5" y="0" width="344.5" height="46.0" fill="url(#fadeR)"/></mask>
+    <filter id="g" x="-30%" y="-200%" width="160%" height="500%">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <g mask="url(#mL)">
+    <rect x="0" y="22.1" width="335.4" height="1.8" rx="0.9" fill="url(#flow)" opacity=".85"/>
+  </g>
+  <g mask="url(#mR)">
+    <rect x="528.5" y="22.1" width="344.5" height="1.8" rx="0.9" fill="url(#flow)" opacity=".85"/>
+  </g>
+  <g transform="translate(361.4 30.4)" fill="url(#flow)" filter="url(#g)"><path d="M7.86 -14.49Q8.18 -14.49 8.42 -14.32Q8.65 -14.14 8.73 -13.84L13.21 0.00H10.72L7.29 -11.37Q7.21 -11.68 7.12 -12.01Q7.03 -12.35 6.96 -12.65H6.37Q6.30 -12.35 6.22 -12.01Q6.14 -11.68 6.04 -11.37L2.61 0.00H0.13L4.60 -13.84Q4.68 -14.14 4.92 -14.32Q5.15 -14.49 5.47 -14.49ZM10.36 -6.17V-4.24H2.94V-6.17Z M29.36 -14.74Q30.33 -14.74 31.02 -14.70Q31.71 -14.65 32.29 -14.55Q32.87 -14.45 33.49 -14.29L33.27 -12.48Q32.61 -12.54 32.06 -12.57Q31.50 -12.60 30.87 -12.62Q30.24 -12.64 29.36 -12.64Q28.10 -12.64 27.38 -12.14Q26.65 -11.65 26.34 -10.47Q26.04 -9.29 26.04 -7.25Q26.04 -5.20 26.34 -4.02Q26.65 -2.84 27.38 -2.35Q28.10 -1.85 29.36 -1.85Q30.76 -1.85 31.70 -1.90Q32.65 -1.95 33.56 -2.07L33.78 -0.28Q32.84 0.00 31.85 0.13Q30.85 0.25 29.36 0.25Q27.22 0.25 25.93 -0.47Q24.64 -1.20 24.06 -2.83Q23.49 -4.47 23.49 -7.25Q23.49 -10.02 24.06 -11.66Q24.64 -13.29 25.93 -14.02Q27.22 -14.74 29.36 -14.74Z M50.85 -14.49V0.00H48.43V-14.49ZM55.40 -14.49V-12.48H43.89V-14.49Z M68.93 -14.49V0.00H66.52V-14.49Z M92.38 -14.49 88.17 -0.67Q88.08 -0.39 87.84 -0.20Q87.61 0.00 87.28 0.00H84.97Q84.63 0.00 84.39 -0.20Q84.15 -0.39 84.08 -0.67L79.87 -14.49H82.36L85.46 -3.44Q85.56 -3.04 85.66 -2.64Q85.77 -2.24 85.85 -1.84H86.40Q86.49 -2.24 86.59 -2.65Q86.69 -3.05 86.81 -3.45L89.89 -14.49Z M105.74 -14.49V0.00H103.33V-14.49Z M123.81 -14.49V0.00H121.39V-14.49ZM128.36 -14.49V-12.48H116.85V-14.49Z M149.97 -14.49 145.08 -4.79H142.85L137.94 -14.49H140.49L143.27 -8.71Q143.46 -8.29 143.60 -7.85Q143.75 -7.40 143.88 -6.98H144.05Q144.19 -7.40 144.34 -7.85Q144.49 -8.30 144.66 -8.69L147.44 -14.49ZM145.17 -6.36V0.00H142.75V-6.36Z"/></g>
+</svg>

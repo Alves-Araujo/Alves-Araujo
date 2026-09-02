@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 873.0 46.0" width="873.0" height="46.0"
+     role="img" aria-label="Stack">
+  <title>Stack</title>
+  <defs>
+    <linearGradient id="flow" gradientUnits="userSpaceOnUse" x1="-873.0" y1="0" x2="873.0" y2="0">
+      <stop offset="0.0" stop-color="#22e6e0"/><stop offset="0.0625" stop-color="#46b8f5"/><stop offset="0.125" stop-color="#6f7bfa"/><stop offset="0.1875" stop-color="#a855f0"/><stop offset="0.25" stop-color="#ff3ee0"/><stop offset="0.3125" stop-color="#a855f0"/><stop offset="0.375" stop-color="#6f7bfa"/><stop offset="0.4375" stop-color="#46b8f5"/><stop offset="0.5" stop-color="#22e6e0"/><stop offset="0.5625" stop-color="#46b8f5"/><stop offset="0.625" stop-color="#6f7bfa"/><stop offset="0.6875" stop-color="#a855f0"/><stop offset="0.75" stop-color="#ff3ee0"/><stop offset="0.8125" stop-color="#a855f0"/><stop offset="0.875" stop-color="#6f7bfa"/><stop offset="0.9375" stop-color="#46b8f5"/><stop offset="1" stop-color="#22e6e0"/>
+      <animateTransform attributeName="gradientTransform" type="translate" from="0 0" to="873.0 0"
+                        dur="7.5s" repeatCount="indefinite"/>
+    </linearGradient>
+    <linearGradient id="fadeL" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#000"/><stop offset="55%" stop-color="#fff"/><stop offset="100%" stop-color="#fff"/>
+    </linearGradient>
+    <linearGradient id="fadeR" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#fff"/><stop offset="45%" stop-color="#fff"/><stop offset="100%" stop-color="#000"/>
+    </linearGradient>
+    <mask id="mL"><rect x="0" y="0" width="361.2" height="46.0" fill="url(#fadeL)"/></mask>
+    <mask id="mR"><rect x="502.8" y="0" width="370.2" height="46.0" fill="url(#fadeR)"/></mask>
+    <filter id="g" x="-30%" y="-200%" width="160%" height="500%">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <g mask="url(#mL)">
+    <rect x="0" y="22.1" width="361.2" height="1.8" rx="0.9" fill="url(#flow)" opacity=".85"/>
+  </g>
+  <g mask="url(#mR)">
+    <rect x="502.8" y="22.1" width="370.2" height="1.8" rx="0.9" fill="url(#flow)" opacity=".85"/>
+  </g>
+  <g transform="translate(387.2 30.4)" fill="url(#flow)" filter="url(#g)"><path d="M6.01 -14.75Q7.07 -14.73 8.23 -14.64Q9.39 -14.54 10.52 -14.26L10.37 -12.59Q9.45 -12.63 8.30 -12.65Q7.14 -12.68 6.06 -12.68Q5.36 -12.68 4.87 -12.63Q4.37 -12.59 4.06 -12.42Q3.75 -12.25 3.61 -11.87Q3.47 -11.49 3.47 -10.82Q3.47 -9.82 3.87 -9.40Q4.26 -8.99 5.18 -8.74L8.05 -7.93Q9.76 -7.46 10.40 -6.45Q11.04 -5.45 11.04 -3.79Q11.04 -2.54 10.76 -1.75Q10.47 -0.95 9.86 -0.52Q9.25 -0.09 8.29 0.09Q7.32 0.26 5.97 0.26Q5.25 0.26 4.03 0.19Q2.81 0.11 1.24 -0.20L1.39 -1.95Q2.64 -1.92 3.45 -1.89Q4.27 -1.85 4.87 -1.85Q5.46 -1.85 6.00 -1.85Q7.00 -1.85 7.57 -1.99Q8.14 -2.13 8.37 -2.55Q8.61 -2.98 8.61 -3.80Q8.61 -4.50 8.44 -4.90Q8.27 -5.29 7.91 -5.51Q7.54 -5.72 6.96 -5.87L3.98 -6.73Q2.37 -7.22 1.70 -8.20Q1.04 -9.19 1.04 -10.84Q1.04 -12.09 1.34 -12.87Q1.63 -13.65 2.23 -14.05Q2.83 -14.46 3.77 -14.61Q4.71 -14.75 6.01 -14.75Z M28.39 -14.49V0.00H25.97V-14.49ZM32.94 -14.49V-12.48H21.43V-14.49Z M50.25 -14.49Q50.56 -14.49 50.80 -14.32Q51.04 -14.14 51.12 -13.84L55.59 0.00H53.10L49.67 -11.37Q49.59 -11.68 49.50 -12.01Q49.41 -12.35 49.34 -12.65H48.76Q48.68 -12.35 48.60 -12.01Q48.52 -11.68 48.42 -11.37L44.99 0.00H42.51L46.98 -13.84Q47.06 -14.14 47.30 -14.32Q47.53 -14.49 47.85 -14.49ZM52.74 -6.17V-4.24H45.32V-6.17Z M71.75 -14.74Q72.71 -14.74 73.40 -14.70Q74.09 -14.65 74.67 -14.55Q75.25 -14.45 75.87 -14.29L75.65 -12.48Q74.99 -12.54 74.44 -12.57Q73.88 -12.60 73.25 -12.62Q72.62 -12.64 71.75 -12.64Q70.48 -12.64 69.76 -12.14Q69.03 -11.65 68.72 -10.47Q68.42 -9.29 68.42 -7.25Q68.42 -5.20 68.72 -4.02Q69.03 -2.84 69.76 -2.35Q70.48 -1.85 71.75 -1.85Q73.14 -1.85 74.08 -1.90Q75.03 -1.95 75.94 -2.07L76.16 -0.28Q75.22 0.00 74.23 0.13Q73.23 0.25 71.75 0.25Q69.60 0.25 68.31 -0.47Q67.02 -1.20 66.44 -2.83Q65.87 -4.47 65.87 -7.25Q65.87 -10.02 66.44 -11.66Q67.02 -13.29 68.31 -14.02Q69.60 -14.74 71.75 -14.74Z M98.07 -14.49 94.03 -8.55Q93.83 -8.24 93.61 -8.01Q93.40 -7.78 93.13 -7.56V-7.50Q93.41 -7.28 93.69 -6.99Q93.97 -6.71 94.15 -6.41L98.35 0.00H95.64L90.77 -7.58L95.45 -14.49ZM89.91 -14.49V-10.14Q89.91 -9.47 89.83 -8.85Q89.75 -8.22 89.58 -7.59Q89.71 -6.98 89.81 -6.35Q89.91 -5.72 89.91 -5.16V0.00H87.51V-14.49ZM91.84 -8.44V-6.64H89.12V-8.44Z"/></g>
+</svg>

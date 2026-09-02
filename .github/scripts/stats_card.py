@@ -17,8 +17,8 @@ TOKEN = os.environ.get("GITHUB_TOKEN", "")
 IGNORED = {"HTML", "CMake", "Swift", "Objective-C", "Kotlin", "C", "Ruby", "Batchfile", "Shell"}
 MAX_LANGS = 5
 
-W, H     = 873.0, 174.0
-PAD      = 22.0
+W, H     = 873.0, 140.0
+PAD      = 18.0
 INK      = "#0a0e13"
 MUTED    = "#8b949e"
 BRIGHT   = "#e6edf3"
@@ -84,16 +84,16 @@ def build(n_repos, langs, contribs):
     blocks, bx = [], PAD
     for value, label in stats:
         blocks.append(
-            f'<text x="{round(bx,1)}" y="{PAD + 30}" fill="{BRIGHT}" font-size="28" '
+            f'<text x="{round(bx,1)}" y="{PAD + 26}" fill="{BRIGHT}" font-size="26" '
             f'font-weight="600" font-family="{FONT}">{value}</text>'
-            f'<text x="{round(bx,1)}" y="{PAD + 48}" fill="{MUTED}" font-size="12" '
+            f'<text x="{round(bx,1)}" y="{PAD + 43}" fill="{MUTED}" font-size="11.5" '
             f'font-family="{FONT}">{label}</text>')
         bx += 178
-    blocks.append(f'<text x="{W - PAD}" y="{PAD + 14}" fill="{MUTED}" font-size="12" '
+    blocks.append(f'<text x="{W - PAD}" y="{PAD + 12}" fill="{MUTED}" font-size="11.5" '
                   f'text-anchor="end" font-family="{FONT}">last 12 months</text>')
 
     # ---- barra empilhada ----
-    bar_y, bar_h, bar_w = 118.0, 14.0, W - PAD * 2
+    bar_y, bar_h, bar_w = 86.0, 12.0, W - PAD * 2
     segs, x = [], PAD
     for i, (_, pct) in enumerate(rows):
         seg = bar_w * pct / 100.0
@@ -109,10 +109,10 @@ def build(n_repos, langs, contribs):
     for i, (name, pct) in enumerate(rows):
         col = LANG_COLORS[i % len(LANG_COLORS)]
         legend.append(
-            f'<circle cx="{round(lx+5,1)}" cy="{bar_y + 34}" r="5" fill="{col}"/>'
-            f'<text x="{round(lx+18,1)}" y="{bar_y + 38}" fill="{BRIGHT}" font-size="12.5" '
+            f'<circle cx="{round(lx+5,1)}" cy="{bar_y + 28}" r="5" fill="{col}"/>'
+            f'<text x="{round(lx+18,1)}" y="{bar_y + 32}" fill="{BRIGHT}" font-size="12.5" '
             f'font-family="{FONT}">{name}</text>'
-            f'<text x="{round(lx+18+len(name)*7.6+8,1)}" y="{bar_y + 38}" fill="{MUTED}" '
+            f'<text x="{round(lx+18+len(name)*7.6+8,1)}" y="{bar_y + 32}" fill="{MUTED}" '
             f'font-size="12" font-family="{FONT}">{pct:.1f}%</text>')
         lx += len(name) * 7.6 + 78
     return f'''<?xml version="1.0" encoding="UTF-8"?>
@@ -130,8 +130,7 @@ def build(n_repos, langs, contribs):
   <rect x="0.6" y="0.6" width="{W-1.2}" height="{H-1.2}" rx="9.4" fill="none"
         stroke="url(#flow)" stroke-width="1.2" opacity=".5"/>
   {"".join(blocks)}
-  <rect x="{PAD}" y="84" width="{W - PAD*2}" height="1" fill="#1b2430"/>
-  <text x="{PAD}" y="103" fill="{MUTED}" font-size="12" font-family="{FONT}">Most used languages</text>
+  <rect x="{PAD}" y="72" width="{W - PAD*2}" height="1" fill="#1b2430"/>
   {bar}
   {"".join(legend)}
 </svg>

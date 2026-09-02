@@ -23,22 +23,7 @@
   <img src="https://img.shields.io/badge/Firebase-0D1117?style=for-the-badge&logo=firebase&logoColor=FFCA28" alt="Firebase" />
   <img src="https://img.shields.io/badge/MySQL-0D1117?style=for-the-badge&logo=mysql&logoColor=4479A1" alt="MySQL" />
   <img src="https://img.shields.io/badge/Git-0D1117?style=for-the-badge&logo=git&logoColor=F05032" alt="Git" />
-</p>
-
-<p align="center">
-  <sub>
-  <img src="https://img.shields.io/badge/VS_Code-161B22?style=flat-square" />
-  <img src="https://img.shields.io/badge/IntelliJ_IDEA-161B22?style=flat-square" />
-  <img src="https://img.shields.io/badge/PyCharm-161B22?style=flat-square" />
-  <img src="https://img.shields.io/badge/CLion-161B22?style=flat-square" />
-  <img src="https://img.shields.io/badge/Android_Studio-161B22?style=flat-square" />
-  <img src="https://img.shields.io/badge/Arduino-161B22?style=flat-square" />
-  <img src="https://img.shields.io/badge/Google_Colab-161B22?style=flat-square" />
-  <img src="https://img.shields.io/badge/Falcon_IDE-161B22?style=flat-square" />
-  <img src="https://img.shields.io/badge/Linux-161B22?style=flat-square" />
-  <img src="https://img.shields.io/badge/macOS-161B22?style=flat-square" />
-  <img src="https://img.shields.io/badge/Windows-161B22?style=flat-square" />
-  </sub>
+  <img src="https://img.shields.io/badge/Arduino-0D1117?style=for-the-badge&logo=arduino&logoColor=00979D" alt="Arduino" />
 </p>
 
 <p align="center">

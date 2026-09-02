@@ -7,11 +7,11 @@
 </p>
 
 <p align="center">
-  <a href="https://www.linkedin.com/in/andr%C3%A9-alves-ara%C3%BAjo-589423311"><img src="./assets/btn-linkedin.svg?v=2" height="40" alt="LinkedIn" /></a>
+  <a href="https://www.linkedin.com/in/andr%C3%A9-alves-ara%C3%BAjo-589423311"><img src="./assets/btn-linkedin.svg?v=3" height="40" alt="LinkedIn" /></a>
 </p>
 
 <p align="center">
-  <img src="./assets/title-stack.svg?v=2" width="100%" alt="Stack" />
+  <img src="./assets/title-stack.svg?v=4" width="100%" alt="Stack" />
 </p>
 
 <p align="center">
@@ -42,17 +42,17 @@
 </p>
 
 <p align="center">
-  <img src="./assets/title-activity.svg?v=2" width="100%" alt="Activity" />
+  <img src="./assets/title-activity.svg?v=4" width="100%" alt="Activity" />
 </p>
 
 <p align="center">
-  <img src="./assets/stats-card.svg?v=2" width="100%" alt="GitHub stats" />
+  <img src="./assets/stats-card.svg?v=3" width="100%" alt="GitHub stats" />
 </p>
 
 <p align="center">
-  <img src="./assets/contribution-graph.svg?v=2" width="100%" alt="Contribution graph" />
+  <img src="./assets/contribution-graph.svg?v=3" width="100%" alt="Contribution graph" />
 </p>
 
 <p align="center">
-  <img src="./assets/bottom-banner.svg?v=2" width="100%" alt="See you around" />
+  <img src="./assets/bottom-banner.svg?v=3" width="100%" alt="See you around" />
 </p>

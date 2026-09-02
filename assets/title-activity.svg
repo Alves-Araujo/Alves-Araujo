@@ -4,7 +4,7 @@
   <title>Activity</title>
   <defs>
     <linearGradient id="flow" gradientUnits="userSpaceOnUse" x1="-873.0" y1="0" x2="873.0" y2="0">
-      <stop offset="0.0" stop-color="#22e6e0"/><stop offset="0.0625" stop-color="#46b8f5"/><stop offset="0.125" stop-color="#6f7bfa"/><stop offset="0.1875" stop-color="#a855f0"/><stop offset="0.25" stop-color="#ff3ee0"/><stop offset="0.3125" stop-color="#a855f0"/><stop offset="0.375" stop-color="#6f7bfa"/><stop offset="0.4375" stop-color="#46b8f5"/><stop offset="0.5" stop-color="#22e6e0"/><stop offset="0.5625" stop-color="#46b8f5"/><stop offset="0.625" stop-color="#6f7bfa"/><stop offset="0.6875" stop-color="#a855f0"/><stop offset="0.75" stop-color="#ff3ee0"/><stop offset="0.8125" stop-color="#a855f0"/><stop offset="0.875" stop-color="#6f7bfa"/><stop offset="0.9375" stop-color="#46b8f5"/><stop offset="1" stop-color="#22e6e0"/>
+      <stop offset="0.0" stop-color="#0ea5a4"/><stop offset="0.0625" stop-color="#2f7fe8"/><stop offset="0.125" stop-color="#5b56e0"/><stop offset="0.1875" stop-color="#8b31c9"/><stop offset="0.25" stop-color="#d61fb0"/><stop offset="0.3125" stop-color="#8b31c9"/><stop offset="0.375" stop-color="#5b56e0"/><stop offset="0.4375" stop-color="#2f7fe8"/><stop offset="0.5" stop-color="#0ea5a4"/><stop offset="0.5625" stop-color="#2f7fe8"/><stop offset="0.625" stop-color="#5b56e0"/><stop offset="0.6875" stop-color="#8b31c9"/><stop offset="0.75" stop-color="#d61fb0"/><stop offset="0.8125" stop-color="#8b31c9"/><stop offset="0.875" stop-color="#5b56e0"/><stop offset="0.9375" stop-color="#2f7fe8"/><stop offset="1" stop-color="#22e6e0"/>
       <animateTransform attributeName="gradientTransform" type="translate" from="0 0" to="873.0 0"
                         dur="7.5s" repeatCount="indefinite"/>
     </linearGradient>
@@ -17,7 +17,7 @@
     <mask id="mL"><rect x="0" y="0" width="335.4" height="46.0" fill="url(#fadeL)"/></mask>
     <mask id="mR"><rect x="528.5" y="0" width="344.5" height="46.0" fill="url(#fadeR)"/></mask>
     <filter id="g" x="-30%" y="-200%" width="160%" height="500%">
-      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feGaussianBlur stdDeviation="2" result="b"/>
       <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
   </defs>

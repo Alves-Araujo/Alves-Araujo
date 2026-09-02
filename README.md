@@ -3,10 +3,6 @@
 </p>
 
 <p align="center">
-  <b>Computer Engineering</b> at <b>Inatel</b> &#183; 6th period
-</p>
-
-<p align="center">
   <a href="https://www.linkedin.com/in/andr%C3%A9-alves-ara%C3%BAjo-589423311"><img src="./assets/btn-linkedin.svg?v=3" height="40" alt="LinkedIn" /></a>
 </p>
 
@@ -31,11 +27,11 @@
 </p>
 
 <p align="center">
-  <img src="./assets/stats-card.svg?v=3" width="100%" alt="GitHub stats" />
+  <img src="./assets/stats-card.svg?v=4" width="100%" alt="GitHub stats" />
 </p>
 
 <p align="center">
-  <img src="./assets/contribution-graph.svg?v=3" width="100%" alt="Contribution graph" />
+  <img src="./assets/contribution-graph.svg?v=4" width="100%" alt="Contribution graph" />
 </p>
 
 <p align="center">

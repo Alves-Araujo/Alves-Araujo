@@ -62,7 +62,9 @@ def gather(user):
     if not isinstance(repos, list):
         # resposta de erro da API (limite excedido, por exemplo) vem como dicionario
         sys.exit(f"API nao devolveu a lista de repositorios: {repos}")
-    repos = [r for r in repos if not r.get("fork")]
+    # fora forks e o repositorio do proprio perfil, que nao e projeto
+    repos = [r for r in repos
+             if not r.get("fork") and r["name"].lower() != user.lower()]
     langs = Counter()
     for r in repos:
         data = api(f"/repos/{user}/{r['name']}/languages")

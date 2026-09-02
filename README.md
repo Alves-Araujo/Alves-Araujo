@@ -46,6 +46,10 @@
 <h2 align="center">&#128202; Activity</h2>
 
 <p align="center">
+  <img src="./assets/stats-card.svg" width="100%" alt="GitHub stats" />
+</p>
+
+<p align="center">
   <img src="./assets/contribution-graph.svg" width="100%" alt="Contribution graph" />
 </p>
 

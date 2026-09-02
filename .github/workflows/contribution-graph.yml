@@ -1,4 +1,4 @@
-name: Contribution graph
+name: Profile cards
 
 on:
   schedule:
@@ -15,16 +15,23 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Gera o SVG
+      - name: Gera o grafico de contribuicoes
         env:
           GH_USER: ${{ github.repository_owner }}
           OUT_PATH: assets/contribution-graph.svg
         run: python3 .github/scripts/contrib_graph.py
 
+      - name: Gera o card de estatisticas
+        env:
+          GH_USER: ${{ github.repository_owner }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OUT_PATH: assets/stats-card.svg
+        run: python3 .github/scripts/stats_card.py
+
       - name: Commita se mudou
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/contribution-graph.svg
-          git diff --staged --quiet || git commit -m "chore: atualiza grafico de contribuicoes"
+          git add assets/contribution-graph.svg assets/stats-card.svg
+          git diff --staged --quiet || git commit -m "chore: atualiza cards do perfil"
           git push

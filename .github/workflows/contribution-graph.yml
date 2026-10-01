@@ -25,6 +25,9 @@ jobs:
         env:
           GH_USER: ${{ github.repository_owner }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Token pessoal com escopo "repo": faz o card contar tambem os
+          # repositorios privados. Sem ele, o card conta so os publicos.
+          METRICS_TOKEN: ${{ secrets.METRICS_TOKEN }}
           OUT_PATH: assets/stats-card.svg
         run: python3 .github/scripts/stats_card.py
 

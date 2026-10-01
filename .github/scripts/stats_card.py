@@ -46,6 +46,34 @@ def api(path):
         return None
 
 
+def graphql(consulta):
+    """GraphQL so responde autenticado. Devolve None se nao der."""
+    if not USAR_TOKEN:
+        return None
+    try:
+        r = subprocess.run(
+            ["curl", "-s", "--max-time", "40", "https://api.github.com/graphql",
+             "-H", f"Authorization: Bearer {TOKEN}",
+             "-H", "Content-Type: application/json",
+             "-d", json.dumps({"query": consulta})],
+            capture_output=True, text=True, check=True).stdout
+        d = json.loads(r)
+        return d.get("data")
+    except Exception:                                  # noqa: BLE001
+        return None
+
+
+def contribuicoes_privadas():
+    """Quantas contribuicoes sairam de repositorios privados, sem revelar quais.
+    Exige um token com escopo read:user; sem ele a API devolve so o publico."""
+    d = graphql("{ viewer { contributionsCollection { restrictedContributionsCount } } }")
+    try:
+        n = d["viewer"]["contributionsCollection"]["restrictedContributionsCount"]
+        return n if isinstance(n, int) and n > 0 else None
+    except Exception:                                  # noqa: BLE001
+        return None
+
+
 def contributions(user):
     try:
         page = subprocess.run(
@@ -106,10 +134,11 @@ def gather(user):
             # ignora payload de erro, onde o valor e uma string
             if name not in IGNORED and isinstance(size, int):
                 langs[name] += size
-    return len(repos), langs, contributions(user)
+    privados = sum(1 for r in repos if r.get("private"))
+    return len(repos), privados, langs, contributions(user), contribuicoes_privadas()
 
 
-def build(n_repos, langs, contribs):
+def build(n_repos, n_privados, langs, contribs, contribs_privadas):
     top = langs.most_common(MAX_LANGS)
     total = sum(v for _, v in top) or 1
     rows = [(name, size / total * 100.0) for name, size in top]
@@ -119,16 +148,29 @@ def build(n_repos, langs, contribs):
         for p in (0, 1) for i, c in enumerate(PALETTE)) + '<stop offset="1" stop-color="#22e6e0"/>'
 
     # ---- numeros ----
-    stats = [(f"{n_repos}", "Repositories"), (f"{contribs}", "Contributions"),
-             (f"{len(langs)}", "Languages")]
+    # O detalhe publico/privado so aparece quando ha privados a contar: sem isso
+    # a linha ficaria repetindo o numero grande.
+    det_repos = (f"{n_repos - n_privados} public \u00b7 {n_privados} private"
+                 if n_privados else "")
+    det_contrib = (f"{contribs - contribs_privadas} public \u00b7 {contribs_privadas} private"
+                   if contribs_privadas else "")
+    stats = [(f"{n_repos}", "Repositories", det_repos),
+             (f"{contribs}", "Contributions", det_contrib),
+             (f"{len(langs)}", "Languages", "")]
     blocks, bx = [], PAD
-    for value, label in stats:
+    for value, label, detalhe in stats:
         blocks.append(
             f'<text x="{round(bx,1)}" y="{PAD + 24}" fill="{BRIGHT}" font-size="24" '
             f'font-weight="600" font-family="{FONT}">{value}</text>'
             f'<text x="{round(bx,1)}" y="{PAD + 40}" fill="{MUTED}" font-size="11" '
             f'font-family="{FONT}">{label}</text>')
-        bx += 178
+        if detalhe:
+            # ao lado do numero grande, na mesma linha de base
+            dx = bx + len(value) * 14.5 + 9
+            blocks.append(
+                f'<text x="{round(dx,1)}" y="{PAD + 24}" fill="{MUTED}" font-size="10.5" '
+                f'font-family="{FONT}">{detalhe}</text>')
+        bx += 250
     blocks.append(f'<text x="{W - PAD}" y="{PAD + 10}" fill="{MUTED}" font-size="11" '
                   f'text-anchor="end" font-family="{FONT}">last 12 months</text>')
 
@@ -158,7 +200,7 @@ def build(n_repos, langs, contribs):
     return f'''<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}"
      role="img" aria-label="GitHub stats">
-  <title>{n_repos} repositories, {contribs} contributions, {len(langs)} languages</title>
+  <title>{n_repos} repositories{f" ({det_repos})" if det_repos else ""}, {contribs} contributions{f" ({det_contrib})" if det_contrib else ""}, {len(langs)} languages</title>
   <defs>
     <linearGradient id="flow" gradientUnits="userSpaceOnUse" x1="{-W}" y1="0" x2="{W}" y2="0">
       {stops}
@@ -178,12 +220,13 @@ def build(n_repos, langs, contribs):
 
 
 if __name__ == "__main__":
-    n, langs, contribs = gather(USER)
+    n, n_priv, langs, contribs, contribs_priv = gather(USER)
     if not langs:
         sys.exit("nenhuma linguagem encontrada")
-    svg = build(n, langs, contribs)
+    svg = build(n, n_priv, langs, contribs, contribs_priv)
     os.makedirs(os.path.dirname(OUT) or ".", exist_ok=True)
     with open(OUT, "w", encoding="utf-8") as fh:
         fh.write(svg)
-    print(f"{OUT} | {len(svg)} bytes | {n} repos | {contribs} contribs | "
+    print(f"{OUT} | {len(svg)} bytes | {n} repos ({n_priv} privados) | "
+          f"{contribs} contribs ({contribs_priv if contribs_priv else 0} privadas) | "
           + ", ".join(f"{k} {v/sum(langs.values())*100:.1f}%" for k, v in langs.most_common(5)))

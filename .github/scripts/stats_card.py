@@ -10,10 +10,14 @@ from collections import Counter
 
 USER  = os.environ.get("GH_USER", "Alves-Araujo")
 OUT   = os.environ.get("OUT_PATH", "assets/stats-card.svg")
-# METRICS_TOKEN: token pessoal com escopo "repo", para enxergar os repositorios
-# privados. O GITHUB_TOKEN padrao das Actions so enxerga o proprio repositorio,
-# entao sem o METRICS_TOKEN o card conta apenas os publicos.
-TOKEN = os.environ.get("METRICS_TOKEN") or os.environ.get("GITHUB_TOKEN", "")
+# Dois papeis diferentes:
+#  - TOKEN_PRIVADO: token pessoal (escopo repo e read:user). So ele enxerga os
+#    repositorios privados e as contribuicoes privadas.
+#  - TOKEN: qualquer token serve para autenticar as chamadas comuns e sair do
+#    limite anonimo de 60 por hora, que na Actions e compartilhado entre
+#    runners. O GITHUB_TOKEN padrao faz esse papel.
+TOKEN_PRIVADO = os.environ.get("METRICS_TOKEN", "")
+TOKEN = TOKEN_PRIVADO or os.environ.get("GITHUB_TOKEN", "")
 
 # Linguagens que o Flutter/CMake geram sozinhos nas pastas de plataforma.
 # Nao foram escritas por voce, entao nao contam. Edite a vontade.
@@ -31,14 +35,9 @@ LANG_COLORS = ["#22e6e0", "#6f7bfa", "#a855f0", "#ff3ee0", "#46b8f5"]
 FONT = "system-ui,-apple-system,Segoe UI,sans-serif"
 
 
-# Desligado quando o token falha, para o fallback publico nao reenviar
-# um cabecalho de autorizacao invalido e levar 401 de novo.
-USAR_TOKEN = bool(TOKEN)
-
-
 def api(path):
     cmd = ["curl", "-sL", "--max-time", "40", f"https://api.github.com{path}"]
-    if USAR_TOKEN:
+    if TOKEN:
         cmd += ["-H", f"Authorization: Bearer {TOKEN}"]
     try:
         return json.loads(subprocess.run(cmd, capture_output=True, text=True, check=True).stdout)
@@ -48,12 +47,12 @@ def api(path):
 
 def graphql(consulta):
     """GraphQL so responde autenticado. Devolve None se nao der."""
-    if not USAR_TOKEN:
+    if not TOKEN_PRIVADO:
         return None
     try:
         r = subprocess.run(
             ["curl", "-s", "--max-time", "40", "https://api.github.com/graphql",
-             "-H", f"Authorization: Bearer {TOKEN}",
+             "-H", f"Authorization: Bearer {TOKEN_PRIVADO}",
              "-H", "Content-Type: application/json",
              "-d", json.dumps({"query": consulta})],
             capture_output=True, text=True, check=True).stdout
@@ -63,15 +62,35 @@ def graphql(consulta):
         return None
 
 
+def privados_do_arquivo():
+    """Numeros privados guardados em disco, para quando nao ha token.
+
+    Assim o workflow continua atualizando os numeros publicos todo dia sem
+    precisar de nenhuma credencial guardada: o que ele nao consegue ver
+    sozinho vem daqui. O arquivo tem so dois inteiros agregados, a mesma
+    informacao que o card ja mostra. Regere com:
+        python3 .github/scripts/private_stats.py
+    """
+    try:
+        with open(os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                               "..", "private-stats.json"), encoding="utf-8") as fh:
+            return json.load(fh)
+    except Exception:                                  # noqa: BLE001
+        return {}
+
+
 def contribuicoes_privadas():
     """Quantas contribuicoes sairam de repositorios privados, sem revelar quais.
     Exige um token com escopo read:user; sem ele a API devolve so o publico."""
     d = graphql("{ viewer { contributionsCollection { restrictedContributionsCount } } }")
     try:
         n = d["viewer"]["contributionsCollection"]["restrictedContributionsCount"]
-        return n if isinstance(n, int) and n > 0 else None
+        if isinstance(n, int) and n > 0:
+            return n
     except Exception:                                  # noqa: BLE001
-        return None
+        pass
+    n = privados_do_arquivo().get("contribuicoes")
+    return n if isinstance(n, int) and n > 0 else None
 
 
 def contributions(user):
@@ -96,9 +115,10 @@ def contributions(user):
 def listar_repos(user):
     """Com token: /user/repos enxerga publicos e privados. Sem token: so os publicos.
     Pagina ate o fim para nao travar em 100 silenciosamente."""
-    global USAR_TOKEN
+    # /user/repos so funciona com token pessoal. O GITHUB_TOKEN da Actions nao
+    # serve nele, entao nem tentamos: isso evita uma chamada que sempre falha.
     publico = f"/users/{user}/repos?type=owner"
-    base = "/user/repos?affiliation=owner&visibility=all" if USAR_TOKEN else publico
+    base = "/user/repos?affiliation=owner&visibility=all" if TOKEN_PRIVADO else publico
     while True:
         todos, pagina = [], 1
         while True:
@@ -112,9 +132,12 @@ def listar_repos(user):
         # erro da API vem como dicionario. Se foi o token que falhou (expirado,
         # revogado), ainda da para montar o card so com os repositorios publicos.
         if base != publico:
-            print("aviso: token nao listou os repositorios; usando so os publicos",
-                  file=sys.stderr)
-            USAR_TOKEN = False
+            print("aviso: o METRICS_TOKEN nao listou os repositorios; "
+                  "usando so os publicos", file=sys.stderr)
+            # se ele estiver expirado, nao adianta seguir usando: volta para o
+            # GITHUB_TOKEN, que ao menos tira as chamadas do limite anonimo
+            global TOKEN
+            TOKEN = os.environ.get("GITHUB_TOKEN", "")
             base = publico
             continue
         sys.exit(f"API nao devolveu a lista de repositorios: {lote}")
@@ -135,6 +158,13 @@ def gather(user):
             if name not in IGNORED and isinstance(size, int):
                 langs[name] += size
     privados = sum(1 for r in repos if r.get("private"))
+    if not privados:
+        # sem token a listagem so traz publicos; o numero de privados vem do arquivo
+        guardado = privados_do_arquivo().get("repos")
+        if isinstance(guardado, int) and guardado > 0:
+            privados = guardado
+            repos_total = len(repos) + guardado
+            return repos_total, privados, langs, contributions(user), contribuicoes_privadas()
     return len(repos), privados, langs, contributions(user), contribuicoes_privadas()
 
 

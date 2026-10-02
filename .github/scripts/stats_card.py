@@ -28,11 +28,22 @@ W, H     = 873.0, 118.0
 PAD      = 16.0
 INK      = "#0a0e13"
 MUTED    = "#8b949e"
+DIM      = "#5c6773"   # a separacao publico/privado, um tom abaixo do rotulo
 BRIGHT   = "#e6edf3"
 PALETTE  = ["#22e6e0", "#46b8f5", "#6f7bfa", "#a855f0", "#ff3ee0", "#a855f0",
             "#6f7bfa", "#46b8f5"]
 LANG_COLORS = ["#22e6e0", "#6f7bfa", "#a855f0", "#ff3ee0", "#46b8f5"]
 FONT = "system-ui,-apple-system,Segoe UI,sans-serif"
+
+# Largura aproximada de um texto. Contar letras e multiplicar por um valor fixo
+# erra feio em fonte proporcional: "lili" e "mwmw" tem quatro letras cada.
+_ESTREITAS = set("iljtfIrJ1.,;:'!|()[] ")
+_LARGAS = set("mwMW%@")
+
+
+def largura(txt, tamanho):
+    u = sum(0.30 if c in _ESTREITAS else 0.82 if c in _LARGAS else 0.55 for c in txt)
+    return u * tamanho
 
 
 def api(path):
@@ -180,26 +191,25 @@ def build(n_repos, n_privados, langs, contribs, contribs_privadas):
     # ---- numeros ----
     # O detalhe publico/privado so aparece quando ha privados a contar: sem isso
     # a linha ficaria repetindo o numero grande.
-    det_repos = (f"{n_repos - n_privados} public \u00b7 {n_privados} private"
+    det_repos = (f"{n_repos - n_privados} public, {n_privados} private"
                  if n_privados else "")
-    det_contrib = (f"{contribs - contribs_privadas} public \u00b7 {contribs_privadas} private"
+    det_contrib = (f"{contribs - contribs_privadas} public, {contribs_privadas} private"
                    if contribs_privadas else "")
     stats = [(f"{n_repos}", "Repositories", det_repos),
              (f"{contribs}", "Contributions", det_contrib),
              (f"{len(langs)}", "Languages", "")]
     blocks, bx = [], PAD
     for value, label, detalhe in stats:
+        # numero grande e, embaixo, uma linha so: rotulo e a separacao em tom
+        # mais apagado. O tspan flui logo apos o rotulo, sem calcular posicao.
+        # o separador fica no texto pai: espaco no inicio de um tspan e
+        # descartado na renderizacao, e o detalhe cola no rotulo
+        extra = (f' \u00b7 <tspan fill="{DIM}">{detalhe}</tspan>') if detalhe else ""
         blocks.append(
             f'<text x="{round(bx,1)}" y="{PAD + 24}" fill="{BRIGHT}" font-size="24" '
             f'font-weight="600" font-family="{FONT}">{value}</text>'
-            f'<text x="{round(bx,1)}" y="{PAD + 40}" fill="{MUTED}" font-size="11" '
-            f'font-family="{FONT}">{label}</text>')
-        if detalhe:
-            # ao lado do numero grande, na mesma linha de base
-            dx = bx + len(value) * 14.5 + 9
-            blocks.append(
-                f'<text x="{round(dx,1)}" y="{PAD + 24}" fill="{MUTED}" font-size="10.5" '
-                f'font-family="{FONT}">{detalhe}</text>')
+            f'<text x="{round(bx,1)}" y="{PAD + 41}" fill="{MUTED}" font-size="10.5" '
+            f'font-family="{FONT}">{label}{extra}</text>')
         bx += 250
     blocks.append(f'<text x="{W - PAD}" y="{PAD + 10}" fill="{MUTED}" font-size="11" '
                   f'text-anchor="end" font-family="{FONT}">last 12 months</text>')
@@ -220,13 +230,13 @@ def build(n_repos, n_privados, langs, contribs, contribs_privadas):
     legend, lx = [], PAD
     for i, (name, pct) in enumerate(rows):
         col = LANG_COLORS[i % len(LANG_COLORS)]
+        # a porcentagem vai num tspan, entao fica sempre a mesma distancia do
+        # nome, qualquer que seja a largura dele
         legend.append(
             f'<circle cx="{round(lx+5,1)}" cy="{bar_y + 24}" r="4.5" fill="{col}"/>'
             f'<text x="{round(lx+18,1)}" y="{bar_y + 28}" fill="{BRIGHT}" font-size="12" '
-            f'font-family="{FONT}">{name}</text>'
-            f'<text x="{round(lx+18+len(name)*7.6+8,1)}" y="{bar_y + 28}" fill="{MUTED}" '
-            f'font-size="12" font-family="{FONT}">{pct:.1f}%</text>')
-        lx += len(name) * 7.6 + 78
+            f'font-family="{FONT}">{name} <tspan fill="{MUTED}">{pct:.1f}%</tspan></text>')
+        lx += 18 + largura(f"{name} {pct:.1f}%", 12) + 26
     return f'''<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}"
      role="img" aria-label="GitHub stats">
